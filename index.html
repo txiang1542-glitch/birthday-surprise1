@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Surprise</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0b132b, #1c2541, #3a506b);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* စကားဝှက်ရိုက်ထည့်ရမည့် အကွက်ဒီဇိုင်း */
+    .login-box, .birthday-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 20px;
+      padding: 35px 25px;
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    h1, h2 {
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
+
+    p {
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #e0e6ed;
+      font-size: 15px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid #ffd700;
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 15px;
+      outline: none;
+    }
+
+    button {
+      background: linear-gradient(45deg, #d4af37, #ffd700);
+      color: #0b132b;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .error-msg {
+      color: #ff6b6b;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* မွေးနေ့ဆုတောင်း စာမျက်နှာ (မူလအစတွင် ဖျောက်ထားမည်) */
+    .birthday-card {
+      display: none;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .photo-gallery img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 215, 0, 0.5);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- အဆင့် (၁) - စကားဝှက်ရိုက်ထည့်ရမည့် အပိုင်း -->
+  <div class="login-box" id="loginSection">
+    <h2>🔒 လျှို့ဝှက်စာမျက်နှာ</h2>
+    <p>ဆက်လက်ကြည့်ရှုရန် အထူးစကားဝှက်ကို ရိုက်ထည့်ပါ<br>(ဥပမာ - မွေးနေ့ သို့မဟုတ် အမှတ်တရနေ့စွဲ)</p>
+    <input type="password" id="passwordInput" placeholder="စကားဝှက် ရိုက်ထည့်ပါ...">
+    <br>
+    <button onclick="checkPassword()">ဖွင့်ကြည့်မည်</button>
+    <div class="error-msg" id="errorMsg">စကားဝှက် မှားယွင်းနေပါသည်၊ ပြန်လည်ကြိုးစားပါ။</div>
+  </div>
+
+  <!-- အဆင့် (၂) - မွေးနေ့ဆုတောင်းနှင့် ဓာတ်ပုံများ အပိုင်း -->
+  <div class="birthday-card" id="birthdaySection">
+    <h1>🎂 Happy Birthday! 🎉</h1>
+    <p>
+      ပျော်ရွှင်စရာ မွေးနေ့လေး ဖြစ်ပါစေ။ ယနေ့မှစပြီး နောင်နှစ်ပေါင်းများစွာတိုင်အောင် 
+      ကျန်းမာပျော်ရွှင်ပြီး လိုအင်ဆန္ဒမှန်သမျှ ပြည့်ဝပါစေလို့ ဆုမွန်ကောင်း တောင်းပေးလိုက်ပါတယ်။
+    </p>
+
+    <!-- ဓာတ်ပုံများ ထည့်သွင်းရန် နေရာ -->
+    <div class="photo-gallery">
+      <img src="photo1.jpg" alt="Memory 1">
+      <img src="photo2.jpg" alt="Memory 2">
+    </div>
+
+    <p style="font-size: 13px; color: #ffd700; margin-bottom: 0;">❤️ အမြဲတမ်း အတူရှိနေမယ့်သူ ❤️</p>
+  </div>
+
+  <script>
+    // မိမိစိတ်ကြိုက် စကားဝှက်ကို ဤနေရာတွင် ပြောင်းလဲသတ်မှတ်ပါ
+    const SECRET_PASSWORD = "1111"; 
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const errorMsg = document.getElementById("errorMsg");
+
+      if (input === SECRET_PASSWORD) {
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("birthdaySection").style.display = "block";
+      } else {
+        errorMsg.style.display = "block";
+      }
+    }
+
+    // Enter ခလုတ်နှိပ်ရုံဖြင့် စကားဝှက်စစ်ဆေးနိုင်ရန်
+    document.getElementById("passwordInput").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+    });
+  </script>
+
+</body>
+</html>
